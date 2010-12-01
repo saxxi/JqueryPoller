@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>JqueryPoller tester</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.poller.js"></script>
+	
+	<script type="text/javascript">
+	// can we do better?
+	function arrkeys(ary){ st = []; for(var i in ary) st.push(i); return st; } // eq of array_keys in PHP
+	function countkeys(ary){ var count=0; for(key in ary) count=count+1; return count; }
+	// --------------- --------------- --------------- --------------- ---------------
+	
+	var poller;
+	function start_poller(){
+		poller = new JqueryPoller({
+			222: { success:'func_imgs',  error:'func_imgs_err' },
+			444: { success:'func_vids',  error:'func_vids_err' },
+			555: { success:'func_imgs',  error:'func_imgs_err' },
+			666: { success:'func_imgs',  error:'func_imgs_err' },
+			77:  { success:'func_vids',  error:'func_vids_err' },
+			33:  { success:'func_other', error:'func_other_err' },
+		});
+	}
+	
+	function func_imgs(id){      console.log(id,'DONE img!'); }
+	function func_vids(id){      console.log(id,'DONE vid!'); }
+	function func_other(id){     console.log(id,'DONE other!'); }
+	
+	function func_imgs_err(id){  console.log(id,'ERROR img!'); }
+	function func_vids_err(id){  console.log(id,'ERROR vid!'); }
+	function func_other_err(id){ console.log(id,'ERROR other!'); }
+	
+	$(document).ready(function(){
+		
+		$('#uploaderbtn').live('click', function(){ start_poller(); });
+		start_poller();
+		
+	});
+	
+	</script>
+	
+	<style type="text/css"> a { color:ffcc00; }; a:hover { cursor:pointer; } </style>
+	
+</head>
+<body>
+	<h1>JqueryPoller tester</h1>
+	
+	<a id="uploaderbtn">start</a>
+	
+</body>
+</html>
