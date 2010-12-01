@@ -32,6 +32,16 @@ Server responsds in JSON notation
 
 	{"codes":{"222":"ok", "444":"pending","33":"processing"},"txts":{"222":"done", "444":"Pending...","33":"Working..."},"t":879868354}
 
+
+### Add more jobs
+
+	poller.addpolling({
+		122: { success:'func_vids', error:'func_vids_err' },
+		133: { success:'func_vids', error:'func_vids_err' },
+		144: { success:'func_imgs', error:'func_imgs_err' }
+	});
+
+
 Author
 ------
 
